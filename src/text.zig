@@ -5,6 +5,7 @@ const std = @import("std");
 const mem = std.mem;
 const testing = std.testing;
 
+
 pub const Align = enum(u8) {
     top_left = c.NK_TEXT_ALIGN_TOP | c.NK_TEXT_ALIGN_LEFT,
     mid_left = c.NK_TEXT_ALIGN_MIDDLE | c.NK_TEXT_ALIGN_LEFT,
@@ -23,6 +24,14 @@ pub fn label(ctx: *nk.Context, text: []const u8, alignment: Align) void {
 
 pub fn labelColored(ctx: *nk.Context, text: []const u8, alignment: Align, color: nk.Color) void {
     return c.nk_label_colored(ctx, nk.slice(text), @enumToInt(alignment), color);
+} 
+
+pub fn label(ctx: *nk.Context, text: []const u8, textalign: TextAlignment) void {
+    return c.nk_label(ctx, nk.slice(text), textalign.toNuklear());
+}
+
+pub fn labelColored(ctx: *nk.Context, text: []const u8, textalign: TextAlignment, color: nk.Color) void {
+    return c.nk_label_colored(ctx, nk.slice(text), textalign.toNuklear(), color);
 }
 
 pub fn labelWrap(ctx: *nk.Context, text: []const u8) void {
