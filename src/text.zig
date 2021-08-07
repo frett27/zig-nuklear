@@ -5,35 +5,43 @@ const std = @import("std");
 const mem = std.mem;
 const testing = std.testing;
 
-pub const TextHorizontalAlignment = enum(c_uint) { Left = 0x01, // NK_TEXT_ALIGN_LEFT
-Centered = 0x02, // NK_TEXT_ALIGN_CENTERED
-Right = 0x04 // NK_TEXT_ALIGN_RIGHT
-};
+pub const Align = struct {
+    vertical: Vertical = .left,
+    horizontal: Horizontal = .middle,
 
-pub const TextVerticalAlignment = enum(c_uint) { Top = 0x08, // NK_TEXT_ALIGN_TOP
-Middle = 0x10, // NK_TEXT_ALIGN_MIDDLE
-Bottom = 0x20 // NK_TEXT_ALIGN_BOTTOM
-};
+    pub const top_left: Alignment = .{ .vertical = .top, .horizontal = .left };
+    pub const mid_left: Alignment = .{ .vertical = .middle, .horizontal = .left };
+    pub const bot_left: Alignment = .{ .vertical = .bot, .horizontal = .left };
+    pub const top_center: Alignment = .{ .vertical = .top, .horizontal = .center };
+    pub const mid_center: Alignment = .{ .vertical = .middle, .horizontal = .center };
+    pub const bot_center: Alignment = .{ .vertical = .bot, .horizontal = .center };
+    pub const top_right: Alignment = .{ .vertical = .top, .horizontal = .right };
+    pub const mid_right: Alignment = .{ .vertical = .middle, .horizontal = .right };
+    pub const bot_right: Alignment = .{ .vertical = .bot, .horizontal = .right };
 
-pub const TextAlignment = struct {
-    horizontal: TextHorizontalAlignment = Middle,
-    vertical: TextVerticalAlignment = Left,
+    pub const Vertical = enum(u8) {
+        top = c.NK_TEXT_ALIGN_TOP,
+        middle = c.NK_TEXT_ALIGN_MIDDLE,
+        bottom = c.NK_TEXT_ALIGN_BOTTOM,
+    };
 
-    pub fn toNuklear(flags: TextAlignment) nk.Flags {
+    pub const Horizontal = enum(u8) {
+        left = c.NK_TEXT_ALIGN_LEFT,
+        center = c.NK_TEXT_ALIGN_CENTERED,
+        right = c.NK_TEXT_ALIGN_RIGHT,
+    };
+
+    pub fn toNuklear(flags: Align) nk.Flags {
         return @enumToInt(flags.horizontal) | @enumToInt(flags.vertical);
     }
 };
 
-pub const TextAlignmentLeft: TextAlignment = .{ .horizontal = .Left, .vertical = .Middle };
-pub const TextAlignmentCentered: TextAlignment = .{ .horizontal = .Centered, .vertical = .Middle };
-pub const TextAlignmentRight: TextAlignment = .{ .horizontal = .Right, .vertical = .Middle };
-
-pub fn label(ctx: *nk.Context, text: []const u8, textalign: TextAlignment) void {
-    return c.nk_label(ctx, nk.slice(text), textalign.toNuklear());
+pub fn label(ctx: *nk.Context, text: []const u8, alignment: Align) void {
+    return c.nk_label(ctx, nk.slice(text), alignment.toNuklear());
 }
 
-pub fn labelColored(ctx: *nk.Context, text: []const u8, textalign: TextAlignment, color: nk.Color) void {
-    return c.nk_label_colored(ctx, nk.slice(text), textalign.toNuklear(), color);
+pub fn labelColored(ctx: *nk.Context, text: []const u8, alignment: Align, color: nk.Color) void {
+    return c.nk_label_colored(ctx, nk.slice(text), alignment.toNuklear(), color);
 }
 
 pub fn labelWrap(ctx: *nk.Context, text: []const u8) void {
