@@ -376,7 +376,7 @@ pub const contextual = struct {
         return c.nk_contextual_begin(ctx, y, a, trigger_bounds) != 0;
     }
 
-    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.TextAlignment) bool {
+    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.Align) bool {
         return c.nk_contextual_item_label(ctx, nk.slice(a), alignment.toNuklear()) != 0;
     }
 
@@ -433,7 +433,7 @@ pub const menubar = struct {
 };
 
 pub const menu = struct {
-    pub fn beginLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.TextAlignment, size: nk.Vec2) bool {
+    pub fn beginLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.Align, size: nk.Vec2) bool {
         return c.nk_menu_begin_label(ctx, nk.slice(a), alignment.toNuklear(), size) != 0;
     }
 

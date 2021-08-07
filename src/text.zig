@@ -9,15 +9,15 @@ pub const Align = struct {
     vertical: Vertical = .left,
     horizontal: Horizontal = .middle,
 
-    pub const top_left: Alignment = .{ .vertical = .top, .horizontal = .left };
-    pub const mid_left: Alignment = .{ .vertical = .middle, .horizontal = .left };
-    pub const bot_left: Alignment = .{ .vertical = .bot, .horizontal = .left };
-    pub const top_center: Alignment = .{ .vertical = .top, .horizontal = .center };
-    pub const mid_center: Alignment = .{ .vertical = .middle, .horizontal = .center };
-    pub const bot_center: Alignment = .{ .vertical = .bot, .horizontal = .center };
-    pub const top_right: Alignment = .{ .vertical = .top, .horizontal = .right };
-    pub const mid_right: Alignment = .{ .vertical = .middle, .horizontal = .right };
-    pub const bot_right: Alignment = .{ .vertical = .bot, .horizontal = .right };
+    pub const top_left: Align = .{ .vertical = .top, .horizontal = .left };
+    pub const mid_left: Align = .{ .vertical = .middle, .horizontal = .left };
+    pub const bot_left: Align = .{ .vertical = .bot, .horizontal = .left };
+    pub const top_center: Align = .{ .vertical = .top, .horizontal = .center };
+    pub const mid_center: Align = .{ .vertical = .middle, .horizontal = .center };
+    pub const bot_center: Align = .{ .vertical = .bot, .horizontal = .center };
+    pub const top_right: Align = .{ .vertical = .top, .horizontal = .right };
+    pub const mid_right: Align = .{ .vertical = .middle, .horizontal = .right };
+    pub const bot_right: Align = .{ .vertical = .bot, .horizontal = .right };
 
     pub const Vertical = enum(u8) {
         top = c.NK_TEXT_ALIGN_TOP,
