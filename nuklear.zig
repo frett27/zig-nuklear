@@ -379,8 +379,8 @@ pub const contextual = struct {
         return c.nk_contextual_begin(ctx, y, a, trigger_bounds) != 0;
     }
 
-    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.Flags) bool {
-        return c.nk_contextual_item_label(ctx, nk.slice(a), alignment) != 0;
+    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.TextAlignment) bool {
+        return c.nk_contextual_item_label(ctx, nk.slice(a), alignment.toNuklear()) != 0;
     }
 
     pub fn itemImageLabel(ctx: *nk.Context, y: nk.Image, a: []const u8, alignment: nk.Flags) bool {
@@ -437,8 +437,8 @@ pub const menubar = struct {
 };
 
 pub const menu = struct {
-    pub fn beginLabel(ctx: *nk.Context, a: []const u8, alignment: nk.Flags, size: nk.Vec2) bool {
-        return c.nk_menu_begin_label(ctx, nk.slice(a), alignment, size) != 0;
+    pub fn beginLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.TextAlignment, size: nk.Vec2) bool {
+        return c.nk_menu_begin_label(ctx, nk.slice(a), alignment.toNuklear(), size) != 0;
     }
 
     pub fn beginImage(ctx: *nk.Context, y: []const u8, a: nk.Image, size: nk.Vec2) bool {
@@ -448,11 +448,11 @@ pub const menu = struct {
     pub fn beginImageLabel(
         ctx: *nk.Context,
         y: []const u8,
-        alignment: nk.Flags,
+        alignment: nk.text.TextAlignment,
         a: nk.Image,
         size: nk.Vec2,
     ) bool {
-        return c.nk_menu_begin_image_label(ctx, nk.slice(y), alignment, a, size) != 0;
+        return c.nk_menu_begin_image_label(ctx, nk.slice(y), alignment.toNuklear(), a, size) != 0;
     }
 
     pub fn beginSymbol(ctx: *nk.Context, y: []const u8, a: nk.SymbolType, size: nk.Vec2) bool {
@@ -462,11 +462,11 @@ pub const menu = struct {
     pub fn beginSymbolLabel(
         ctx: *nk.Context,
         y: []const u8,
-        alignment: nk.Flags,
+        alignment: nk.text.TextAlignment,
         a: nk.SymbolType,
         size: nk.Vec2,
     ) bool {
-        return c.nk_menu_begin_symbol_label(ctx, nk.slice(y), alignment, a, size) != 0;
+        return c.nk_menu_begin_symbol_label(ctx, nk.slice(y), alignment.toNuklear(), a, size) != 0;
     }
 
     pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.Flags) bool {
@@ -493,6 +493,8 @@ pub const menu = struct {
         std.testing.refAllDecls(@This());
     }
 };
+
+pub const color_count = c.NK_COLOR_COUNT;
 
 pub const style = struct {
     pub fn default(ctx: *nk.Context) void {
