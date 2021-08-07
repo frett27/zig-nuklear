@@ -1001,7 +1001,7 @@ pub const Command = union(enum) {
     text: *const c.struct_nk_command_text,
     image: *const c.struct_nk_command_image,
     custom: *const c.struct_nk_command,
-
+    
     pub fn fromNuklear(cmd: *const c.struct_nk_command) Command {
         switch (cmd.type) {
             .NK_COMMAND_SCISSOR => return .{ .scissor = @ptrCast(*const c.struct_nk_command_scissor, cmd) },
@@ -1101,6 +1101,9 @@ pub const Iterator = struct {
             c.nk__begin(it.ctx)) orelse return null;
 
         defer it.prev = res;
+        if (res == null) {
+            return null;
+        }
         return Command.fromNuklear(res);
     }
 };
