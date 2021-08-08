@@ -45,6 +45,52 @@ pub fn end(ctx: *nk.Context) void {
     c.nk_input_end(ctx);
 }
 
+pub fn hasMouseClick(inp: *nk.Input, button: Buttons) bool {
+ return c.nk_input_has_mouse_click(inp, button);
+}
+
+pub fn hasMouseClickInRect(inp: *nk.Input, button: Buttons, rect: nk.Rect) bool {
+    return c.nk_input_has_mouse_click_in_rect(input, buttons, rect) != 0;
+}
+
+pub fn hasMouseClickDownInRect(inp: *nk.Input, b: Buttons, rect: nk.Rect, down: bool) bool {
+    return c.nk_input_has_mouse_click_down_in_rect(inp, b, rect, if (down)  1  else 0 ) != 0;
+}
+
+
+// NK_API nk_bool nk_input_is_mouse_click_in_rect(const struct nk_input*, enum nk_buttons, struct nk_rect);
+// NK_API nk_bool nk_input_is_mouse_click_down_in_rect(const struct nk_input *i, enum nk_buttons id, struct nk_rect b, nk_bool down);
+
+// NK_API nk_bool nk_input_any_mouse_click_in_rect(const struct nk_input*, struct nk_rect);
+// NK_API nk_bool nk_input_is_mouse_prev_hovering_rect(const struct nk_input*, struct nk_rect);
+
+pub fn isMouseHoveringRect(inp: *nk.Input, rect :nk.Rect) bool {
+    return c.nk_input_is_mouse_hovering_rect(inp, rect) != 0;
+}
+
+
+pub fn mouseClicked(inp: *nk.Input,buttons: Buttons, rect: nk.Rect) bool {
+    return c.nk_input_mouse_clicked(inp, buttons, rect) != 0;
+}
+
+pub fn  isMouseDown(inp: *nk.Input, buttons: Buttons) bool {
+    return c.nk_input_is_mouse_down(inp, buttons) != 0;
+}
+
+// NK_API nk_bool nk_input_is_mouse_pressed(const struct nk_input*, enum nk_buttons);
+
+pub fn isMouseReleased(inp: *nk.Input, buttons: Buttons) bool {
+    return c.nk_input_is_mouse_released(inp, buttons) != 0;
+}
+
+
+// NK_API nk_bool nk_input_is_key_pressed(const struct nk_input*, enum nk_keys);
+// NK_API nk_bool nk_input_is_key_released(const struct nk_input*, enum nk_keys);
+// NK_API nk_bool nk_input_is_key_down(const struct nk_input*, enum nk_keys);
+
+
+
+
 test {
     testing.refAllDecls(@This());
 }

@@ -1161,6 +1161,7 @@ pub const TextEdit = c.struct_nk_text_edit;
 pub const UserFont = c.struct_nk_user_font;
 pub const Vec2 = c.struct_nk_vec2;
 pub const Window = c.struct_nk_window;
+pub const Panel = c.struct_nk_panel;
 
 pub const Command = union(enum) {
     scissor: *const c.struct_nk_command_scissor,

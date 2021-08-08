@@ -82,30 +82,25 @@ pub fn spaceEnd(ctx: *nk.Context) void {
     c.nk_layout_space_end(ctx);
 }
 
-// pub fn spaceBounds(ctx: *nk.Context) nk.Rect {
-//     const res = c.nk_layout_space_bounds(ctx);
-//     return nk.Rect.fromNuklear(&res).*;
-// }
+pub fn spaceBounds(ctx: *nk.Context) nk.Rect {
+   return c.nk_layout_space_bounds(ctx);
+}
 
-// pub fn spaceToScreen(ctx: *nk.Context, ret: Vec2) Vec2 {
-//     const res = c.nk_layout_space_to_screen(ctx, ret);
-//     return Vec2.fromNuklear(&res).*;
-// }
+pub fn spaceToScreen(ctx: *nk.Context, ret: nk.Vec2) nk.Vec2 {
+    return c.nk_layout_space_to_screen(ctx, ret);
+}
 
-// pub fn spaceToLocal(ctx: *nk.Context, ret: Vec2) Vec2 {
-//     const res = c.nk_layout_space_to_local(ctx, ret);
-//     return Vec2.fromNuklear(&res).*;
-// }
+pub fn spaceToLocal(ctx: *nk.Context, ret: nk.Vec2) nk.Vec2 {
+     return c.nk_layout_space_to_local(ctx, ret);
+}
 
-// pub fn spaceRectToScreen(ctx: *nk.Context, ret: nk.Rect) nk.Rect {
-//     const res = c.nk_layout_space_rect_to_screen(ctx, ret);
-//     return nk.Rect.fromNuklear(&res).*;
-// }
+pub fn spaceRectToScreen(ctx: *nk.Context, ret: nk.Rect) nk.Rect {
+    return c.nk_layout_space_rect_to_screen(ctx, ret);
+}
 
-// pub fn spaceRectToLocal(ctx: *nk.Context, ret: nk.Rect) nk.Rect {
-//     const res = c.nk_layout_space_rect_to_local(ctx, ret);
-//     return nk.Rect.fromNuklear(&res).*;
-// }
+pub fn spaceRectToLocal(ctx: *nk.Context, ret: nk.Rect) nk.Rect {
+    return c.nk_layout_space_rect_to_local(ctx, ret);
+}
 
 test {
     testing.refAllDecls(@This());
