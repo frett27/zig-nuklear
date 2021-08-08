@@ -105,6 +105,7 @@ pub fn isKeyDown(in: nk.Input, keys: nk.Keys) bool {
     return c.nk_input_is_key_down(&in, keys) != 0;
 }
 
+
 test {
     testing.refAllDecls(@This());
 }
