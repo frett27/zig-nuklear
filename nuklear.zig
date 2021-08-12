@@ -173,8 +173,8 @@ pub const chart = struct {
 };
 
 pub const popup = struct {
-    pub fn begin(ctx: *nk.Context, _type: nk.PopupType, str: []const u8, flags: nk.Flags, bounds: nk.Rect) bool {
-        return c.nk_popup_begin(ctx, _type, nk.slice(str), flags, bounds) != 0;
+    pub fn begin(ctx: *nk.Context, _type: nk.PopupType, str: []const u8, flags: nk.PanelFlags, bounds: nk.Rect) bool {
+        return c.nk_popup_begin(ctx, _type, nk.slice(str), flags.toNuklear(), bounds) != 0;
     }
 
     pub fn close(ctx: *nk.Context) void {
@@ -469,16 +469,16 @@ pub const menu = struct {
         return c.nk_menu_begin_symbol_label(ctx, nk.slice(y), alignment.toNuklear(), a, size) != 0;
     }
 
-    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.Flags) bool {
-        return c.nk_menu_item_label(ctx, nk.slice(a), alignment) != 0;
+    pub fn itemLabel(ctx: *nk.Context, a: []const u8, alignment: nk.text.Align) bool {
+        return c.nk_menu_item_label(ctx, nk.slice(a), alignment.toNuklear()) != 0;
     }
 
-    pub fn itemImageLabel(ctx: *nk.Context, y: nk.Image, a: []const u8, alignment: nk.Flags) bool {
-        return c.nk_menu_item_image_label(ctx, y, nk.slice(a), alignment) != 0;
+    pub fn itemImageLabel(ctx: *nk.Context, y: nk.Image, a: []const u8, alignment: nk.text.Align) bool {
+        return c.nk_menu_item_image_label(ctx, y, nk.slice(a), alignment.toNuklear()) != 0;
     }
 
-    pub fn itemSymbolLabel(ctx: *nk.Context, y: nk.SymbolType, a: []const u8, alignment: nk.Flags) bool {
-        return c.nk_menu_item_symbol_label(ctx, y, nk.slice(a), alignment) != 0;
+    pub fn itemSymbolLabel(ctx: *nk.Context, y: nk.SymbolType, a: []const u8, alignment: nk.text.Align) bool {
+        return c.nk_menu_item_symbol_label(ctx, y, nk.slice(a), alignment.toNuklear()) != 0;
     }
 
     pub fn close(ctx: *nk.Context) void {

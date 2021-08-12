@@ -36,6 +36,12 @@ pub const Align = struct {
     }
 };
 
+
+pub fn t(ctx: *nk.Context, text: []const u8, len:usize, alignment: Align) void {
+    return c.nk_text(ctx, text,len, alignment.toNuklear());
+}
+
+
 pub fn label(ctx: *nk.Context, text: []const u8, alignment: Align) void {
     return c.nk_label(ctx, nk.slice(text), alignment.toNuklear());
 }
